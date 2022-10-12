@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,11 @@ namespace WebApplication2.Controllers
 
         [HttpGet]
 
-        public IEnumerable<Otdel> Get()
+        public async Task<ActionResult<IEnumerable<Sotrud>>> Get()
         {
-            List<Otdel> newOtdel = dataBaseContext.Otdels.Where(c => c.Otdel_ID != 0).ToList();
-            return newOtdel;
-        }        
+            return await dataBaseContext.Sotruds.ToListAsync();
+        }
+     
 
         //    // GET: TestDbController
         //    public ActionResult Index()
